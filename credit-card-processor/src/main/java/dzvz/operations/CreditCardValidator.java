@@ -1,5 +1,6 @@
 package dzvz.operations;
 
+import org.apache.commons.lang.IllegalClassException;
 import org.apache.commons.lang.StringUtils;
 
 /**
@@ -34,18 +35,18 @@ public class CreditCardValidator {
 
             }
             return sum % 10 == 0;
-        } catch (OperationException e) {
+        } catch (IllegalArgumentException e) {
             return false;
         }
     }
 
-    private static int getDigit(String creditCardNumber, int i) throws OperationException {
+    private static int getDigit(String creditCardNumber, int i) throws IllegalArgumentException {
         char value = creditCardNumber.charAt(i);
         int digit = Character.getNumericValue(value);
         if (digit >= 0 && digit <= 9) {
             return digit;
         } else {
-            throw new OperationException("Invalid credit card is provided");
+            throw new IllegalArgumentException("Invalid credit card is provided");
         }
     }
 
