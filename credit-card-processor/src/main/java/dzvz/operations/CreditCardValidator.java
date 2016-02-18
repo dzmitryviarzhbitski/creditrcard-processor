@@ -5,9 +5,9 @@ import org.apache.commons.lang.StringUtils;
 /**
  * Created by dzmirtyviarzhbitski on 2/17/16.
  */
-public class Luhn10 {
+public class CreditCardValidator {
 
-    public static boolean verify(String creditCardNumber) {
+    public static boolean validate(String creditCardNumber) {
 
         if (StringUtils.isBlank(creditCardNumber)){
             return false;
