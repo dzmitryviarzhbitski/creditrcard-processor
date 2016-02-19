@@ -11,12 +11,11 @@ import java.util.List;
  */
 public class CreditCardService {
 
-    private final CreditCardRepository repository;
+    private CreditCardRepository repository;
 
     public CreditCardService(CreditCardRepository repository) {
         this.repository = repository;
     }
-
 
     public void addCreditCard(CreditCard creditCard){
         if (repository.getCreditCard(creditCard.getName()) == null){
@@ -31,7 +30,7 @@ public class CreditCardService {
         if (creditCard != null) {
             if (validateCreditCard(creditCard)) {
                 Long newBalance = creditCard.getBalance() + amount;
-                if (newBalance < creditCard.getLimit()) {
+                if (newBalance <= creditCard.getLimit()) {
                     creditCard.setBalance(newBalance);
                 }
             }

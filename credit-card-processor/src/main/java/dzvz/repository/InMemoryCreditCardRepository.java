@@ -12,7 +12,7 @@ import java.util.TreeMap;
  */
 public class InMemoryCreditCardRepository implements CreditCardRepository {
 
-    private final static SortedMap<String, CreditCard> cardsRepository = new TreeMap<String, CreditCard>();
+    private final SortedMap<String, CreditCard> cardsRepository = new TreeMap<String, CreditCard>();
 
 
     @Override

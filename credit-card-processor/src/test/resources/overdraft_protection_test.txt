@@ -1,0 +1,8 @@
+Add User1 4222222222222 $1000
+Add User2 4222222222222 $2000
+Add User3 4222222222222 $5000
+Charge User1 $1001
+Charge User2 $1999
+Charge User2 $1
+Charge User3 $3000
+Charge User3 $2001

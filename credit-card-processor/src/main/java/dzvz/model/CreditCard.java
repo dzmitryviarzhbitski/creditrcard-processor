@@ -42,4 +42,17 @@ public class CreditCard {
         this.balance = balance;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CreditCard that = (CreditCard) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (number != null ? !number.equals(that.number) : that.number != null) return false;
+        if (balance != null ? !balance.equals(that.balance) : that.balance != null) return false;
+        return limit != null ? limit.equals(that.limit) : that.limit == null;
+
+    }
 }
