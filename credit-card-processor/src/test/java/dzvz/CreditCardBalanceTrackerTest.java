@@ -2,7 +2,7 @@ package dzvz;
 
 import dzvz.clients.CreditCardConsoleClient;
 import dzvz.model.CreditCard;
-import dzvz.operations.CreditCardValidator;
+import dzvz.services.CreditCardValidator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import static dzvz.operations.Operations.parseCurrency;
+import static dzvz.clients.Operations.parseCurrency;
 
 /**
  * Created by dzmirtyviarzhbitski on 2/17/16.
@@ -62,6 +62,7 @@ public class CreditCardBalanceTrackerTest {
         client.processRequest(new String[]{getAbsolutePath(inputPath)});
         List<CreditCard> cards = client.getService().getAllCreditCardsOrderedByName();
         Map<String, CreditCard> expectedResults = parserResults(expectedResultPath);
+        Assert.assertTrue(!expectedResults.isEmpty());
         Assert.assertEquals(cards.size(), expectedResults.size());
         cards.stream().forEach(card-> Assert.assertEquals(expectedResults.get(card.getName()), card));
     }
@@ -77,7 +78,7 @@ public class CreditCardBalanceTrackerTest {
            while (scanner.hasNextLine()){
                String line = scanner.nextLine();
                String[] data = line.split(" ");
-               CreditCard card = CreditCard.newCreditCard(data[0], data[1], parseCurrency(data[2]));
+               CreditCard card = CreditCard.newCreditCard(data[0], data[1], parseCurrency(data[2]),  parseCurrency(data[3]), Boolean.valueOf(data[4]));
                card.setBalance(parseCurrency(data[3]));
                cards.put(card.getName(), card);
            }

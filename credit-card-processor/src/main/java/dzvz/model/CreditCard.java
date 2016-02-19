@@ -10,16 +10,21 @@ public class CreditCard {
     private final String number;
     private Long balance;
     private final Long limit;
+    private boolean valid;
 
-    private CreditCard(String name, String number, Long balance, Long limit) {
+    private CreditCard(String name, String number, Long balance, Long limit, boolean valid) {
         this.name = name;
         this.number = number;
         this.balance = balance;
         this.limit = limit;
+        this.valid = valid;
     }
 
-    public static CreditCard newCreditCard(String name, String number, Long limit) {
-        return new CreditCard(name, number, DEFAULT_BALANCE, limit);
+    public static CreditCard newCreditCard(String name, String number, Long limit, boolean valid) {
+        return new CreditCard(name, number, DEFAULT_BALANCE, limit, valid);
+    }
+    public static CreditCard newCreditCard(String name, String number, Long limit, Long balance, boolean valid) {
+        return new CreditCard(name, number, balance, limit, valid);
     }
 
     public String getNumber() {
@@ -42,6 +47,10 @@ public class CreditCard {
         this.balance = balance;
     }
 
+    public boolean isValid() {
+        return valid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -49,10 +58,10 @@ public class CreditCard {
 
         CreditCard that = (CreditCard) o;
 
+        if (valid != that.valid) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (number != null ? !number.equals(that.number) : that.number != null) return false;
         if (balance != null ? !balance.equals(that.balance) : that.balance != null) return false;
         return limit != null ? limit.equals(that.limit) : that.limit == null;
-
     }
 }

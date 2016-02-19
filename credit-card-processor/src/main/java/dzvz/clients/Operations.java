@@ -1,7 +1,8 @@
-package dzvz.operations;
+package dzvz.clients;
 
 import dzvz.model.CreditCard;
 import dzvz.services.CreditCardService;
+import dzvz.services.CreditCardValidator;
 
 import java.util.stream.Stream;
 
@@ -18,7 +19,7 @@ public enum Operations {
         String name = arguments[1];
         String cardNumber = arguments[2];
         String limit = arguments[3];
-        creditCardService.addCreditCard(newCreditCard(name, cardNumber, parseCurrency(limit)));
+        creditCardService.addCreditCard(newCreditCard(name, cardNumber, parseCurrency(limit), CreditCardValidator.validate(cardNumber)));
       }
 
     }
@@ -51,7 +52,7 @@ public enum Operations {
       creditCardService.getAllCreditCardsOrderedByName().stream().forEach(card-> printSummary(card));
     }
     private void printSummary(CreditCard card) {
-      if (CreditCardValidator.validate(card.getNumber())){
+      if (card.isValid()){
         System.out.println(String.format("%s: %s", card.getName(), card.getBalance()));
       }else {
         System.out.println(String.format("%s: %s", card.getName(), "error"));

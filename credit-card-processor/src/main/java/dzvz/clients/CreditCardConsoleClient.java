@@ -1,6 +1,5 @@
 package dzvz.clients;
 
-import dzvz.operations.Operations;
 import dzvz.repository.InMemoryCreditCardRepository;
 import dzvz.services.CreditCardService;
 import org.apache.commons.lang.StringUtils;
@@ -11,7 +10,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Scanner;
 
-import static dzvz.operations.Operations.getOperationByName;
+import static dzvz.clients.Operations.getOperationByName;
 
 /**
  * Created by dzmirtyviarzhbitski on 2/17/16.

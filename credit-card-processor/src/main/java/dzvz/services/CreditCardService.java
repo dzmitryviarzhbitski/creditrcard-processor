@@ -1,7 +1,6 @@
 package dzvz.services;
 
 import dzvz.model.CreditCard;
-import dzvz.operations.CreditCardValidator;
 import dzvz.repository.CreditCardRepository;
 
 import java.util.List;
@@ -28,7 +27,7 @@ public class CreditCardService {
     public void chargeCreditCard(String name, Long amount){
         CreditCard creditCard = repository.getCreditCard(name);
         if (creditCard != null) {
-            if (validateCreditCard(creditCard)) {
+            if (creditCard.isValid()) {
                 Long newBalance = creditCard.getBalance() + amount;
                 if (newBalance <= creditCard.getLimit()) {
                     creditCard.setBalance(newBalance);
@@ -40,7 +39,7 @@ public class CreditCardService {
     public void creditCreditCard(String name, Long amount){
         CreditCard creditCard = repository.getCreditCard(name);
         if (creditCard != null) {
-            if (validateCreditCard(creditCard)) {
+            if (creditCard.isValid()) {
                 Long newBalance = creditCard.getBalance() - amount;
                 creditCard.setBalance(newBalance);
             }
@@ -50,10 +49,5 @@ public class CreditCardService {
     public List<CreditCard> getAllCreditCardsOrderedByName(){
         return repository.getCreditCardsOrderedByName();
     }
-
-    public boolean validateCreditCard(CreditCard creditCard){
-        return new CreditCardValidator().validate(creditCard.getNumber());
-    }
-
 
 }
