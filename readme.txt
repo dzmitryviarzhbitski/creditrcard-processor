@@ -7,13 +7,18 @@
 I used Java because it is crossplatform.
 I used Apache Maven. It build project with all dependencies to one jar and also run Junit tests during build.
 Source code located under creditrcard-processor/credit-card-processor/src/main/java/dzvz
-Tests are located in creditrcard-processor/credit-card-processor/src/test/java/dzvz/CreditCardBalanceTrackerTest.java
+Tests are located in creditrcard-processor/credit-card-processor/src/test/java/dzvz/CreditCardBalanceTrackerTest.java. Invoked during build.
 
 
 Classes:
-dzvz.clientsCreditCardConsoleClient - client which will listen input and use Operation class to figure out the operation.
+dzvz.clientsCreditCardConsoleClient - client which will listen input and use Operations class to lookup the operation.
 CreditCardService uses InMemoryCreditCardRepository.
 All implemented using operations (even summary).
+
+Assumptions:
+-application is single threaded
+-no need to validate inputs (card length and etc)
+
 
 
 

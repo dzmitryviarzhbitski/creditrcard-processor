@@ -25,8 +25,8 @@ public class CreditCardConsoleClient {
     }
 
     public void processRequest(String ...s){
-        Path source = Paths.get(s[0]);
-        try (Scanner scanner = getScanner(source, s);){
+
+        try (Scanner scanner = getScanner(s);){
             while (scanner.hasNextLine()){
                 String line = scanner.nextLine();
                 processLine(service, line);
@@ -35,9 +35,11 @@ public class CreditCardConsoleClient {
         }
     }
 
-    private static Scanner getScanner(Path source, String[] s){
+    private static Scanner getScanner(String[] s){
+        ;
         if (isFileNamePassed(s)){
             try {
+                Path source = Paths.get(s[0]);
                 return new Scanner(source);
             } catch (IOException e) {
                 throw new RuntimeException(e);
